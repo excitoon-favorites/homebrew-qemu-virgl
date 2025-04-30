@@ -1,7 +1,7 @@
 class QemuVirgl < Formula
   desc "Emulator for x86 and PowerPC"
   homepage "https://www.qemu.org/"
-  url "https://github.com/qemu/qemu.git", using: :git, revision: "40b933fca98943d9f14b9c81ba4184b4714df9ad"
+  url "https://github.com/qemu/qemu.git", using: :git, revision: "99fc08366b06282614daeda989d2fde6ab8a707f"
   version "20211212.2"
   license "GPL-2.0-only"
 
@@ -13,9 +13,6 @@ class QemuVirgl < Formula
   depends_on "glib"
   depends_on "gnutls"
   depends_on "jpeg"
-  depends_on "excitoon-favorites/qemu-virgl/libangle"
-  depends_on "excitoon-favorites/qemu-virgl/libepoxy-angle"
-  depends_on "excitoon-favorites/qemu-virgl/virglrenderer"
   depends_on "libpng"
   depends_on "libssh"
   depends_on "libusb"
@@ -52,13 +49,7 @@ class QemuVirgl < Formula
       --enable-libssh
       --enable-vde
       --extra-cflags=-DNCURSES_WIDECHAR=1
-      --extra-cflags=-I#{Formula["libangle"].opt_prefix}/include
-      --extra-cflags=-I#{Formula["libepoxy-angle"].opt_prefix}/include
-      --extra-cflags=-I#{Formula["virglrenderer"].opt_prefix}/include
       --extra-cflags=-I#{Formula["spice-protocol"].opt_prefix}/include/spice-1
-      --extra-ldflags=-L#{Formula["libangle"].opt_prefix}/lib
-      --extra-ldflags=-L#{Formula["libepoxy-angle"].opt_prefix}/lib
-      --extra-ldflags=-L#{Formula["virglrenderer"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["spice-protocol"].opt_prefix}/lib
       --disable-sdl
       --disable-gtk
