@@ -53,6 +53,7 @@ class QemuVirgl < Formula
       --extra-ldflags=-L#{Formula["spice-protocol"].opt_prefix}/lib
       --disable-sdl
       --disable-gtk
+      --python=/opt/homebrew/bin/python3.13
     ]
     # Sharing Samba directories in QEMU requires the samba.org smbd which is
     # incompatible with the macOS-provided version. This will lead to
