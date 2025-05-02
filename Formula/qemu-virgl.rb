@@ -1,8 +1,8 @@
 class QemuVirgl < Formula
   desc "Emulator for x86 and PowerPC"
   homepage "https://www.qemu.org/"
-  url "https://github.com/excitoon-favorites/qemu.git", using: :git, revision: "f0cfd067867668870931c9411d96cd518564b7a8"
-  version "20211212.35"
+  url "https://github.com/excitoon-favorites/qemu.git", using: :git, revision: "c1eb2ddf0f8075faddc5f7c3d39feae3e8e9d6b4"
+  version "20211212.36"
   license "GPL-2.0-only"
 
   depends_on "libtool" => :build
