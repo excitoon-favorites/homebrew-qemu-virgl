@@ -1,8 +1,8 @@
 class QemuVirgl < Formula
   desc "Emulator for x86 and PowerPC"
   homepage "https://www.qemu.org/"
-  url "https://github.com/qemu/qemu.git", using: :git, revision: "40b933fca98943d9f14b9c81ba4184b4714df9ad"
-  version "20211212.100"
+  url "https://github.com/excitoon-favorites/qemu.git", using: :git, revision: "c1eb2ddf0f8075faddc5f7c3d39feae3e8e9d6b4"
+  version "20211212.101"
   license "GPL-2.0-only"
 
   depends_on "libtool" => :build
@@ -13,9 +13,6 @@ class QemuVirgl < Formula
   depends_on "glib"
   depends_on "gnutls"
   depends_on "jpeg"
-  depends_on "excitoon-favorites/qemu-virgl/libangle"
-  depends_on "excitoon-favorites/qemu-virgl/libepoxy-angle"
-  depends_on "excitoon-favorites/qemu-virgl/virglrenderer"
   depends_on "libpng"
   depends_on "libssh"
   depends_on "libusb"
@@ -34,10 +31,10 @@ class QemuVirgl < Formula
   end
 
   # waiting for upstreaming of https://github.com/akihikodaki/qemu/tree/macos
-  patch :p1 do
-    url "https://raw.githubusercontent.com/knazarov/homebrew-qemu-virgl/87072b7ccc07f5087bf0848fa8920f8b3f8d5a47/Patches/qemu-v05.diff"
-    sha256 "6d27699ba454b5ecb7411822a745b89dce3dea5fccabfb56c84ad698f3222dd4"
-  end
+  #patch :p1 do
+  #  url "https://raw.githubusercontent.com/knazarov/homebrew-qemu-virgl/87072b7ccc07f5087bf0848fa8920f8b3f8d5a47/Patches/qemu-v05.diff"
+  #  sha256 "6d27699ba454b5ecb7411822a745b89dce3dea5fccabfb56c84ad698f3222dd4"
+  #end
 
   def install
     ENV["LIBTOOL"] = "glibtool"
@@ -52,16 +49,11 @@ class QemuVirgl < Formula
       --enable-libssh
       --enable-vde
       --extra-cflags=-DNCURSES_WIDECHAR=1
-      --extra-cflags=-I#{Formula["libangle"].opt_prefix}/include
-      --extra-cflags=-I#{Formula["libepoxy-angle"].opt_prefix}/include
-      --extra-cflags=-I#{Formula["virglrenderer"].opt_prefix}/include
       --extra-cflags=-I#{Formula["spice-protocol"].opt_prefix}/include/spice-1
-      --extra-ldflags=-L#{Formula["libangle"].opt_prefix}/lib
-      --extra-ldflags=-L#{Formula["libepoxy-angle"].opt_prefix}/lib
-      --extra-ldflags=-L#{Formula["virglrenderer"].opt_prefix}/lib
       --extra-ldflags=-L#{Formula["spice-protocol"].opt_prefix}/lib
       --disable-sdl
       --disable-gtk
+      --python=/opt/homebrew/bin/python3.13
     ]
     # Sharing Samba directories in QEMU requires the samba.org smbd which is
     # incompatible with the macOS-provided version. This will lead to
